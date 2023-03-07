@@ -1,0 +1,37 @@
+﻿// aula 01 dia 06/03
+// apenas para ver qual a versão do git
+git --version
+
+// configuração de uma usuário para o git só é necessário fazer 1x
+git config --global user.name "Luiz Felipe"
+git config --global user.email "luizfelipe.freire@gmail.com"
+
+// criar e acessar a pasta pelo windos explore que deseja gerenciar os arquivos
+
+// iniciar o git necessário executar apenas 1x
+git init
+
+// comandos para listar arquivos na pasta usar quando quiser ver os arquivos da pasta
+ls ou dir
+
+// mostrar a situação dos arquivos na pasta [executar quando quiser]
+git status
+
+// comando para preparar arquivos para um commit [executar antes do commit]
+git add .
+
+// comando para confirmar "Commit" das alterações [executar quando for salvar as alterações]
+git commit -m "Primeiro Commit, criado o arquivo index.html"
+
+// comando para ver o histórico dos commmits
+git log
+
+// aula 02 dia 07/03
+
+// criar um novo repositório na conta do github [executar 1x]
+
+// sincronizar o repositório do github com a pasta local do git [executar 1x]
+git remote add origin https://github.com/luiz87/curso-php.git
+
+// enviar as alterações locais para o github [executar sempre geralmente depois do commit]
+git push -u origin master
