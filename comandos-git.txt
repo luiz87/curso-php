@@ -35,3 +35,6 @@ git remote add origin https://github.com/luiz87/curso-php.git
 
 // enviar as alterações locais para o github [executar sempre geralmente depois do commit]
 git push -u origin master
+
+// comando para buscar as alterações que foram feitas no origin [execuar só quando tiver commites no origin que não estão no local]
+git pull
