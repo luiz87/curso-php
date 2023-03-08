@@ -12,7 +12,7 @@ leia(n1)
 escreval("Digite um número")
 leia(n2)
 soma := n1 + n2
-escreval("A soma dos números é ", soma)
+escreval("A soma de ",n1," e ",n2," = ", soma)
 // desafio na mensagem final tem que mostra tb os numeros digitados
 // exemplo: A soma de 6 e 4 = 10
 fimalgoritmo
