@@ -1,0 +1,45 @@
+﻿A)
+a := 10
+b := 20
+escreva 20
+b := 5
+escreva 10 , 5 
+B)
+a := 30
+b := 20
+c := a + b ?? c := 50
+escreva 50
+b := 10
+escreva 10 , 50
+c := a + b ?? c := 40
+escreva 30 , 10 , 40
+C)
+a := 10
+b := 20
+c := a ?? c := 10
+b := c ?? b := 10
+a := b ?? a := 10
+escreva 10 , 10 , 10
+D)
+a := 10
+b := a + 1 ?? b := 11
+a := b + 1 ?? a := 12
+b := a + 1 ?? b := 13
+escreva 12
+a := b + 1 ?? a := 14
+escreva 14 , 13
+E)
+a := 10
+b := 5
+c := a + b ?? c := 15
+b := 20
+a := 10
+escreva 10 , 20 , 15
+F)
+x := 1
+y := 2
+z := y - x ?? z := 1
+escreva 1
+x := 5
+y := x + z 
+escreva 5 , 6 , 1
