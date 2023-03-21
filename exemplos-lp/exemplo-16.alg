@@ -15,17 +15,17 @@ repita
    escreval("'S' para Sair")
    leia(operacao)
 
-   se (operacao = "E") entao
+   escolha operacao
+   caso "E"
       escreva("Digite a posição: ")
       leia(posicao)
       escreva("Digite a tarefa: ")
       leia(tarefa[posicao])
-   fimse
-   se (operacao = "L") entao
+   caso "L"
       limpatela
       para c de 1 ate 10 faca
          escreval(c," - ",tarefa[c])
       fimpara
-   fimse
+   fimescolha
 ate (operacao = "S")
 fimalgoritmo
