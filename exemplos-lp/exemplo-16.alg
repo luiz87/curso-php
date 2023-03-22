@@ -9,9 +9,9 @@ posicao, c : inteiro
 operacao : caractere
 inicio
 
-repita
+enquanto (operacao <> "S") faca
    escreval("'E' para Editar")
-   escreval("'L' para listar")
+   escreval("'L' para Listar")
    escreval("'S' para Sair")
    leia(operacao)
 
@@ -23,9 +23,9 @@ repita
       leia(tarefa[posicao])
    caso "L"
       limpatela
-      para c de 1 ate 10 faca
+      para c de 1 ate 10 faca  // for(c = 1 ; c <=10; c++)
          escreval(c," - ",tarefa[c])
       fimpara
    fimescolha
-ate (operacao = "S")
+fimenquanto
 fimalgoritmo
