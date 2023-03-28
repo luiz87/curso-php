@@ -56,9 +56,38 @@ para i de 1 ate 3 faca
    escreval("")
 fimpara
 fimprocedimento
+funcao vericaVencedor() : logico
+var
+
+c : inteiro
+inicio
+se (tabuleiro[1,1] <> "") e (tabuleiro[1,1] = tabuleiro[2,2]) e (tabuleiro[1,1] = tabuleiro[3,3]) entao
+   escreval("Vencedor ", tabuleiro[1,1])
+   vencedor := verdadeiro
+fimse
+
+se (tabuleiro[3,1] <> "") e (tabuleiro[3,1] = tabuleiro[2,2]) e (tabuleiro[3,1] = tabuleiro[1,3]) entao
+   escreval("Vencedor ", tabuleiro[3,1])
+   vencedor := verdadeiro
+fimse
+
+para c de 1 ate 3 faca
+   se (tabuleiro[c,1] <> "") e (tabuleiro[c,1] = tabuleiro[c,2]) e (tabuleiro[c,1] = tabuleiro[c,3]) entao
+      escreval("Vencedor ", tabuleiro[c,1])
+      vencedor := verdadeiro
+   fimse
+   se (tabuleiro[1,c] <> "") e (tabuleiro[1,c] = tabuleiro[2,c]) e (tabuleiro[1,c] = tabuleiro[3,c]) entao
+      escreval("Vencedor ", tabuleiro[1,c])
+      vencedor := verdadeiro
+   fimse
+fimpara
+
+retorne vencedor
+fimfuncao
 
 tabuleiro : vetor [1..3,1..3] de caractere
 i , j , jogada , cont: inteiro
+vencedor : logico
 inicio
 
 para i de 1 ate 3 faca
@@ -68,15 +97,29 @@ para i de 1 ate 3 faca
    escreval("")
 fimpara
 cont := 1
+vencedor := falso
 repita
    jogadaVetor()
    limpatela
    atualizarTabuleiro()
    cont := cont + 1
+
+   se (vericaVencedor()) entao
+      cont := 10
+   fimse
+
 ate (cont = 10)
+
+se (vencedor = falso) entao
+   escreval("Deu velha")
+fimse
 
 fimalgoritmo
 
 // 789
 // 456
 // 123
+
+// 1.1 - 1.2 - 1.3
+// 2.1 - 2.2 - 2.3
+// 3.1 - 3.2 - 3.3
