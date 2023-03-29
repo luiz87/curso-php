@@ -16,9 +16,11 @@
     <h1 onclick="alert('Olá Mundo JS')">Minha página</h1>
     <script>
         document.write("Olá Mundo JS 2")
-    </script>
+    </script> 
     <?php
-    echo "Olá Mundo PHP";
+    echo "<br>Olá Mundo PHP";
     ?>
+    <br>
+    <a href="exemplos-php/interacao-form-php/index.html">Exemplo Interação Form PHP</a>
 </body>
 </html>
