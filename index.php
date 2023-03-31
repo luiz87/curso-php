@@ -22,5 +22,9 @@
     ?>
     <br>
     <a href="exemplos-php/interacao-form-php/index.html">Exemplo Interação Form PHP</a>
+    <br>
+    <a href="exemplos-php/string-functions.php">Exemplos das functions de String</a>
+    <br>
+    <a href="exemplos-php/interacao-form-php/from-com-validacao.php">Exemplos do formlário com validação</a>
 </body>
 </html>
