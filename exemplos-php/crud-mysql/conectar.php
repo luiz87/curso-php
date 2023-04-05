@@ -26,4 +26,40 @@ function incluir($nome, $email){
     }
 }
 
+// buscar todas as pessoas que estão gravadas no banco
+function listar(){
+    $con = conectar();
+    $sql = "select id, nome, email from pessoa";
+    $resultado = $con->query($sql);
+    return $resultado;
+}
+
+function buscar($id){
+    $con = conectar();
+    $sql = "select id, nome, email from pessoa where id = $id";
+    $resultado = $con->query($sql);
+    $resultado = $resultado->fetch_assoc();
+    return $resultado;
+}
+
+function alterar($id, $nome, $email){
+    $con = conectar();
+    $sql = "update pessoa set nome = '$nome', email = '$email' where id = $id";
+    if($con->query($sql) === true){
+        return "Ok ao Atualizar";
+    }else{
+        return "Erro: $sql".$con->error;
+    }
+}
+
+function apagar($id){
+    $con = conectar();
+    $sql = "delete from pessoa where id = $id";
+    if($con->query($sql) === true){
+        return "Ok ao Apagar";
+    }else{
+        return "Erro: $sql".$con->error;
+    }
+}
+
 ?>
