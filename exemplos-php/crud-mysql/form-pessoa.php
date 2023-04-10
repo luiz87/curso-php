@@ -7,13 +7,14 @@
 <body>
 <?php
 include 'conectar.php';
-$id = $nome = $email = "";
+$id = $nome = $email = $cpf = "";
 if($_SERVER["REQUEST_METHOD"] == "GET"){
     if (array_key_exists('id',$_GET)){
         $id = $_GET['id'];
         $pessoa = buscar($id);
         $nome = $pessoa['nome'];
         $email = $pessoa['email'];
+        $cpf = $pessoa['cpf'];
     }
     if (array_key_exists('apagar',$_GET)){
         $apagar = $_GET['apagar'];
@@ -29,27 +30,26 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
     <input type="text" name="nome" value="<?php echo $nome; ?>"><br>
     E-mail: <br>
     <input type="text" name="email" value="<?php echo $email; ?>"><br>
+    CPF: <br>
+    <input type="text" name="cpf" value="<?php echo $cpf; ?>"><br>
     <br>
     <input type="submit" value="Gravar">
     <a href="form-pessoa.php">
     <input type="button" value="Novo">
     </a>
-    <input type="button" value="Apagar" 
-    <?php echo 'onclick="window.location.replace(\'form-pessoa.php?apagar="';
-    echo '$id\')"'; ?>
-    >
 </form>
 <?php
 //  onclick="window.location.replace('form-pessoa.php');"
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
+    $cpf = $_POST['cpf'];
 
     $id = $_POST['id'];
     if($id == ''){
-        $msg = incluir($nome, $email);
+        $msg = incluir($nome, $email, $cpf);
     } else {
-        $msg = alterar($id, $nome, $email);
+        $msg = alterar($id, $nome, $email, $cpf);
     }
     
     echo $msg;
@@ -62,6 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <th>Id</th>
         <th>Nome</th>
         <th>Email</th>
+        <th>CPF</th>
     </tr>
     <?php
     $dados = listar();
@@ -70,6 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<td>".$linha['id']."</td>";
         echo "<td>".$linha['nome']."</td>";
         echo "<td>".$linha['email']."</td>";
+        echo "<td>".$linha['cpf']."</td>";
         echo "<td><a href='form-pessoa.php?id=".$linha['id']."'>Editar</a></td>";
         echo "<td><a href='form-pessoa.php?apagar=".$linha['id']."'>Apagar</a></td>";
         echo "</tr>";
