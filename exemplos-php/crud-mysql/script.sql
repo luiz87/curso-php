@@ -16,3 +16,6 @@ CREATE TABLE pessoa(
 
 -- comando para gravar um NOVO registro na tabela
 INSERT INTO pessoa(nome, email) VALUES('luiz felipe','luiz@gmail.com');
+
+ALTER TABLE pessoa ADD cpf VARCHAR(11);
+ALTER TABLE pessoa ADD sexo VARCHAR(1);
