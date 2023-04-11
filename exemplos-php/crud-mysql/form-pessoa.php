@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     Nome: <br>
     <input type="text" name="nome" value="<?php echo $nome; ?>" required><br>
     E-mail: <br>
-    <input type="text" name="email" value="<?php echo $email; ?>" required><br>
+    <input type="email" name="email" value="<?php echo $email; ?>" required><br>
     CPF:<?php echo $msgCpf; ?> <br>
     <input type="text" name="cpf" value="<?php echo $cpf; ?>" required><br>
     Sexo: <br>
