@@ -1,5 +1,16 @@
 <?php
 session_start();
+
+if(!isset($_SESSION['tentativas'])){
+    $_SESSION['tentativas'] = 5;
+}else{
+    $_SESSION['tentativas']--;
+}
+if($_SESSION['tentativas'] > 0){
+    $bt = "submit";
+}else{
+    $bt = "hidden";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,9 +25,10 @@ session_start();
         Senha:<br>
         <input type="password" name="senha"><br>
         <br>
-        <input type="submit" value="Acessar">
+        <input type="<?php echo $bt; ?>" value="Acessar">
     </form>
     <?php
+        echo "<br> Tentativas possíveis: ".$_SESSION['tentativas']."<br>";  
         if(isset($_POST['login']) && isset($_POST['senha']) ){
             $login = $_POST['login'];
             $senha = $_POST['senha'];
