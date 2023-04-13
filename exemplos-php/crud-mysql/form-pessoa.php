@@ -8,7 +8,7 @@
 <?php
 include 'conectar.php';
 include 'validar-cpf.php';
-$msgCpf = $id = $nome = $email = $cpf = $sexo = "";
+$msgCpf = $id = $nome = $email = $cpf = $sexo = $escolaridade = "";
 if($_SERVER["REQUEST_METHOD"] == "GET"){
     if (array_key_exists('id',$_GET)){
         $id = $_GET['id'];
@@ -17,6 +17,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
         $email = $pessoa['email'];
         $cpf = $pessoa['cpf'];
         $sexo = $pessoa['sexo'];
+        $escolaridade = $pessoa['escolaridade'];
     }
     if (array_key_exists('apagar',$_GET)){
         $apagar = $_GET['apagar'];
@@ -31,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $cpf = $_POST['cpf'];
     $sexo = $_POST['sexo'];
+    $escolaridade = $_POST['escolaridade'];
     $id = $_POST['id'];
 
     $cpf = str_replace(".","",$cpf);
@@ -38,9 +40,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if(validarCpf($cpf)){
         if($id == ''){
-            $msg = incluir($nome, $email, $cpf, $sexo);
+            $senha = $_POST['senha'];
+            $confirmar = $_POST['confirmar'];
+            if($senha == $confirmar){
+                $msg = incluir($nome, $email, $cpf, $sexo, $escolaridade, $senha);
+            }else{
+                $msg = "Senhas divergentes!";
+            }
+            
         } else {
-            $msg = alterar($id, $nome, $email, $cpf, $sexo);
+            $msg = alterar($id, $nome, $email, $cpf, $sexo, $escolaridade);
         }
     }else{
         $msgCpf = "CPF inválido!";
@@ -62,6 +71,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     Sexo: <br>
     <input type="radio" name="sexo" value="m" required <?php if($sexo == "m") echo "checked"; ?>>Masculino
     <input type="radio" name="sexo" value="f" required <?php if($sexo == "f") echo "checked"; ?>>Feminino
+    <br>
+    Escolaridade <br>
+    <select name="escolaridade">
+        <option value="">Selecione</option>
+        <option <?php if($escolaridade == "ensino-medio") { echo "selected"; }?> value="ensino-medio">Ensino Médio</option>
+        <option <?php if($escolaridade == "superior-incompleto") { echo "selected"; }?> value="superior-incompleto">Superior Incompleto</option>
+        <option <?php if($escolaridade == "superior-completo") { echo "selected"; }?> value="superior-completo">Superior Completo</option>
+    </select>
+    <?php if (!isset($_GET['id'])) { ?>
+        <br>
+        Senha: <br>
+        <input type="password" name="senha" required>
+        <br>
+        Confirmar Senha: <br>
+        <input type="password" name="confirmar">
+      <?php } ?>
     <br>
     <br>
     <input type="submit" value="Gravar">
