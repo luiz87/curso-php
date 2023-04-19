@@ -30,7 +30,7 @@ function incluir($nome, $email, $cpf, $sexo, $escolaridade, $senha){
 // buscar todas as pessoas que estão gravadas no banco
 function listar(){
     $con = conectar();
-    $sql = "select id, nome, email, cpf, sexo from pessoa";
+    $sql = "select id, ucase(nome) as nome, email, cpf, ucase(sexo) as sexo from pessoa";
     $resultado = $con->query($sql);
     return $resultado;
 }
