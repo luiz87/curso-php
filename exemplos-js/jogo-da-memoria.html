@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Jogo da Memoria</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <style>
+        .card {
+            width: 58px;
+            text-align: center;
+            cursor: pointer;
+            float: left;
+            margin: 5px;
+        }
+        #status{
+            color: orange;
+        }
+    </style>
+    <div class="container">
+        <h2>Jogo da Memoria <span id="status"></span><a id="novo-jogo" href="jogo-da-memoria.html" class="btn btn-primary">Jogar Novamente</a></h2>
+        <div id="tabuleiro">
+        </div>
+        
+    </div>
+    <script>
+        lsItem = [];
+        jogada1 = -1;
+        jogada2 = -1;
+        errou = [];
+        function gerarCards() {
+            misturarItem();
+            cards = "";
+            for (let i = 0; i < lsItem.length; i++) {
+                cards += `<div class="card" onclick="verItem(${i})"><div class="card-body">❓</div></div>`;
+            }
+            document.getElementById("tabuleiro").innerHTML = cards;
+
+        }
+
+        function misturarItem() {
+            lsOpcoes = ["🎈", "🎄","🧦","🎃","👓"];
+            temp = [];
+            for (const opcao of lsOpcoes) {
+                temp.push(opcao);
+                temp.push(opcao);
+            }
+
+            qtLoop = temp.length;
+            for (let i = 0; i < qtLoop; i++) {
+                limite = (qtLoop - 1) - i;
+                aleatorio = Math.floor(Math.random() * limite);
+                lsItem[i] = temp.splice(aleatorio, 1)[0];
+            }
+            console.log(lsItem);
+        }
+
+
+        function verItem(item) {
+            if (document.getElementsByClassName("card-body")[item].innerHTML != "❓") {
+                return;
+            }
+            if (errou.length == 2) {
+                document.getElementsByClassName("card-body")[errou[0]].innerHTML = "❓";
+                document.getElementsByClassName("card-body")[errou[1]].innerHTML = "❓";
+                errou = [];
+            }
+            document.getElementById("status").innerHTML = "";
+            document.getElementsByClassName("card-body")[item].innerHTML = lsItem[item];
+            jogada(item);
+            verificaJogo();
+        }
+
+        function jogada(item) {
+
+            if (jogada1 < 0) {
+                jogada1 = item;
+            } else {
+                jogada2 = item;
+            }
+
+            if (jogada1 >= 0 && jogada2 >= 0) {
+                if (lsItem[jogada1] == lsItem[jogada2]) {
+                    document.getElementById("status").innerHTML = "Acertou";
+                    jogada1 = -1;
+                    jogada2 = -1;
+                } else {
+                    document.getElementById("status").innerHTML = "Errou";
+                    errou = [jogada1, jogada2];
+                    jogada1 = -1;
+                    jogada2 = -1;
+
+                }
+            }
+
+        }
+
+        function verificaJogo() {
+            fimJogo = true;
+            for (let i = 0; i < lsItem.length; i++) {
+                if (document.getElementsByClassName("card-body")[i].innerHTML == "❓") {
+                    fimJogo = false;
+                    break;
+                }
+            }
+            if(fimJogo){
+                document.getElementById("status").innerHTML = "Jogo concluido";
+                document.getElementById("novo-jogo").style.display = "inline-block";
+            }
+        }
+        gerarCards();
+        document.getElementById("novo-jogo").style.display = "none";
+    </script>
+</body>
+
+</html>
