@@ -21,17 +21,21 @@
         <table class="table">
             <tr>
                 <th>Titulo</th>
-                <!-- <th class="col-1">Operações</th> -->
+                <th class="col-3">Autor</th>
+                <th class="col-1">Acessar</th>
             </tr>
             <?php
             include("conectar.php");
-            $sql = "select * from publicacao";
+            $sql = "select p.id, p.titulo, a.email from publicacao p inner join admin a on a.id = p.id_admin;";
             $resut = conectar($sql);
             while ($linha = $resut->fetch_assoc()) {
                 $id = $linha['id'];
                 $t = $linha['titulo'];
+                $email = $linha['email'];
                 echo "<tr>
                         <td>$t</td>
+                        <td>$email</td>
+                        <td><a href='publicacao.php?id=$id'>👀</a></td>
                     </tr>";
             }
             ?>

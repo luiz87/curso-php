@@ -32,6 +32,8 @@
                     <button type="submit" class="btn btn-primary">Acessar</button>
                     <a href="form-criar-conta.php">Criar conta</a>
                 </form>
+                <br>
+                <a href="lista-publicacoes.php">Visualizar Publicações</a>
             </div>
         </div>
     </div>
