@@ -6,11 +6,12 @@ function conectar($sql){
     $banco = "mydb";
     $id = "";
 
-    if(false){
-        $id = "id98sdfj_";
+    if(true){
+        $id = "id20602874_";
+        $senha = "Xnqi\jZ*(8Tb^4B=";
     }
 
-    $senha = $id.$senha;
+    $usuario = $id.$usuario;
     $banco = $id.$banco;
 
     $con = new mysqli($servidor, $usuario, $senha, $banco);

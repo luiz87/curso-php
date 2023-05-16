@@ -1,3 +1,4 @@
+<?php include("login.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +11,7 @@
 </head>
 
 <body>
-    <?php include("login.php"); ?>
+    
     <div class="container mt-3">
         <div class="row justify-content-center">
             <div class="col-6">
